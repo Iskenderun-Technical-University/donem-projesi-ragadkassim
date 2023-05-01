@@ -9,3 +9,14 @@ C:\Users\LENOVO\Desktop\malzeme\donem-projesi-ragadkassim\malzeme1\malzeme1\obj\
 C:\Users\LENOVO\Desktop\malzeme\donem-projesi-ragadkassim\malzeme1\malzeme1\obj\Debug\malzeme1.csproj.CoreCompileInputs.cache
 C:\Users\LENOVO\Desktop\malzeme\donem-projesi-ragadkassim\malzeme1\malzeme1\obj\Debug\malzeme1.exe
 C:\Users\LENOVO\Desktop\malzeme\donem-projesi-ragadkassim\malzeme1\malzeme1\obj\Debug\malzeme1.pdb
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\bin\Debug\malzeme1.exe.config
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\bin\Debug\malzeme1.exe
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\bin\Debug\malzeme1.pdb
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.csproj.SuggestedBindingRedirects.cache
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.Form1.resources
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.Properties.Resources.resources
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.csproj.GenerateResource.cache
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.exe
+C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\obj\Debug\malzeme1.pdb
