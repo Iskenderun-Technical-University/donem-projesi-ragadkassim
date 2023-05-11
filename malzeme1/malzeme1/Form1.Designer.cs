@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.malzemeKayıtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBCAnaliziToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,14 +46,26 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.database1DataSet = new malzeme1.Database1DataSet();
+            this.malzemeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.malzemeTableAdapter = new malzeme1.Database1DataSetTableAdapters.malzemeTableAdapter();
+            this.malzemeKoduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.malzemeAdiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.yillikSatisiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birimFiyatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimumStokDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tedarikSuresiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.malzemeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -64,7 +77,7 @@
             this.çıkışToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1012, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1012, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,10 +122,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(27, 133);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 17);
+            this.label3.Size = new System.Drawing.Size(113, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Yıllık Satış(adet) :";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Text = "Yıllık Satış (adet) :";
             // 
             // label4
             // 
@@ -122,7 +134,6 @@
             this.label4.Size = new System.Drawing.Size(140, 17);
             this.label4.TabIndex = 9;
             this.label4.Text = "Minimum Stok(adet) :";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -213,17 +224,6 @@
             this.textBox1.Size = new System.Drawing.Size(100, 24);
             this.textBox1.TabIndex = 12;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(35, 295);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 26;
-            this.dataGridView1.Size = new System.Drawing.Size(706, 191);
-            this.dataGridView1.TabIndex = 2;
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.DarkGray;
@@ -231,7 +231,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(89, 40);
             this.button1.TabIndex = 3;
-            this.button1.Text = "KAYDET";
+            this.button1.Text = "EKLE";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -244,7 +244,6 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "SİL";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -255,17 +254,94 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "GÜNCELLE";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.malzemeKoduDataGridViewTextBoxColumn,
+            this.malzemeAdiDataGridViewTextBoxColumn,
+            this.yillikSatisiDataGridViewTextBoxColumn,
+            this.birimFiyatDataGridViewTextBoxColumn,
+            this.minimumStokDataGridViewTextBoxColumn,
+            this.tedarikSuresiDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.malzemeBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(35, 327);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 26;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(804, 214);
+            this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // malzemeBindingSource
+            // 
+            this.malzemeBindingSource.DataMember = "malzeme";
+            this.malzemeBindingSource.DataSource = this.database1DataSet;
+            // 
+            // malzemeTableAdapter
+            // 
+            this.malzemeTableAdapter.ClearBeforeFill = true;
+            // 
+            // malzemeKoduDataGridViewTextBoxColumn
+            // 
+            this.malzemeKoduDataGridViewTextBoxColumn.DataPropertyName = "MalzemeKodu";
+            this.malzemeKoduDataGridViewTextBoxColumn.HeaderText = "MalzemeKodu";
+            this.malzemeKoduDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.malzemeKoduDataGridViewTextBoxColumn.Name = "malzemeKoduDataGridViewTextBoxColumn";
+            // 
+            // malzemeAdiDataGridViewTextBoxColumn
+            // 
+            this.malzemeAdiDataGridViewTextBoxColumn.DataPropertyName = "MalzemeAdi";
+            this.malzemeAdiDataGridViewTextBoxColumn.HeaderText = "MalzemeAdi";
+            this.malzemeAdiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.malzemeAdiDataGridViewTextBoxColumn.Name = "malzemeAdiDataGridViewTextBoxColumn";
+            // 
+            // yillikSatisiDataGridViewTextBoxColumn
+            // 
+            this.yillikSatisiDataGridViewTextBoxColumn.DataPropertyName = "YillikSatisi";
+            this.yillikSatisiDataGridViewTextBoxColumn.HeaderText = "YillikSatisi";
+            this.yillikSatisiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.yillikSatisiDataGridViewTextBoxColumn.Name = "yillikSatisiDataGridViewTextBoxColumn";
+            // 
+            // birimFiyatDataGridViewTextBoxColumn
+            // 
+            this.birimFiyatDataGridViewTextBoxColumn.DataPropertyName = "BirimFiyat";
+            this.birimFiyatDataGridViewTextBoxColumn.HeaderText = "BirimFiyat";
+            this.birimFiyatDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.birimFiyatDataGridViewTextBoxColumn.Name = "birimFiyatDataGridViewTextBoxColumn";
+            // 
+            // minimumStokDataGridViewTextBoxColumn
+            // 
+            this.minimumStokDataGridViewTextBoxColumn.DataPropertyName = "MinimumStok";
+            this.minimumStokDataGridViewTextBoxColumn.HeaderText = "MinimumStok";
+            this.minimumStokDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.minimumStokDataGridViewTextBoxColumn.Name = "minimumStokDataGridViewTextBoxColumn";
+            // 
+            // tedarikSuresiDataGridViewTextBoxColumn
+            // 
+            this.tedarikSuresiDataGridViewTextBoxColumn.DataPropertyName = "TedarikSuresi";
+            this.tedarikSuresiDataGridViewTextBoxColumn.HeaderText = "TedarikSuresi";
+            this.tedarikSuresiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tedarikSuresiDataGridViewTextBoxColumn.Name = "tedarikSuresiDataGridViewTextBoxColumn";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 524);
+            this.ClientSize = new System.Drawing.Size(1012, 611);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -277,6 +353,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.malzemeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,11 +379,21 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private Database1DataSet database1DataSet;
+        private System.Windows.Forms.BindingSource malzemeBindingSource;
+        private Database1DataSetTableAdapters.malzemeTableAdapter malzemeTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn malzemeKoduDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn malzemeAdiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn yillikSatisiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn birimFiyatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minimumStokDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tedarikSuresiDataGridViewTextBoxColumn;
     }
 }
 

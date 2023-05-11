@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Configuration;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,44 +14,86 @@ namespace malzeme1
 {
     public partial class Form1 : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\LENOVO\Desktop\VERİTABANI\malzeme1\malzeme1\Database1.mdf;Integrated Security=True");
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        public static bool check(string str)
         {
-
+            return (String.IsNullOrEmpty(str) ||
+                str.Trim().Length == 0) ? true : false;
         }
-
-        private void label3_Click(object sender, EventArgs e)
+        public DataTable LoadUserTable()
         {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
+            DataTable dt = new DataTable();
+            string query = "SELECT * FROM malzeme";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            con.Close();
+            return dt;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //EKLE
+            if (check(textBox1.Text) == true || check(textBox2.Text) == true || check(textBox3.Text) == true || check(textBox4.Text) == true || check(textBox5.Text) == true || check(textBox6.Text) == true )
+            {
+                MessageBox.Show("Error!!");
+                
+            }
+            else
+            {
+                con.Open();
+                string query = "insert into malzeme (MalzemeKodu , MalzemeAdi , YillikSatisi , BirimFiyat , MinimumStok , TedarikSuresi ) VALUES (@MalzemeKodu , @MalzemeAdi , @YillikSatisi , @BirimFiyat , @MinimumStok , @TedarikSuresi ) ";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@MalzemeKodu", textBox1.Text);
+                cmd.Parameters.AddWithValue("@MalzemeAdi", textBox6.Text);
+                cmd.Parameters.AddWithValue("@YillikSatisi", textBox5.Text);
+                cmd.Parameters.AddWithValue("@BirimFiyat", textBox4.Text);
+                cmd.Parameters.AddWithValue("@MinimumStok", textBox3.Text);
+                cmd.Parameters.AddWithValue("@TedarikSuresi", textBox2.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("saved");
+                dataGridView1.DataSource = LoadUserTable();
+
+            }
+            
 
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'database1DataSet.malzeme' table. You can move, or remove it, as needed.
+            this.malzemeTableAdapter.Fill(this.database1DataSet.malzeme);
+            dataGridView1.DataSource = LoadUserTable();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (dataGridView1.Rows.Count != 0)
+                {
+                    textBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    textBox6.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    textBox5.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    textBox4.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    textBox3.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    textBox2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
 
+                }
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
