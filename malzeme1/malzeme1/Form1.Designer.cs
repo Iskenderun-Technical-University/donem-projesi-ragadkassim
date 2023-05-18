@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.malzemeKayıtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aBCAnaliziToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,9 +50,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.database1DataSet = new malzeme1.Database1DataSet();
             this.malzemeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.database1DataSet = new malzeme1.Database1DataSet();
             this.malzemeTableAdapter = new malzeme1.Database1DataSetTableAdapters.malzemeTableAdapter();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.malzemeKoduDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.malzemeAdiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yillikSatisiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,20 +63,18 @@
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.malzemeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.malzemeKayıtToolStripMenuItem,
-            this.aBCAnaliziToolStripMenuItem,
-            this.çıkışToolStripMenuItem});
+            this.malzemeKayıtToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1012, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1012, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,18 +83,6 @@
             this.malzemeKayıtToolStripMenuItem.Name = "malzemeKayıtToolStripMenuItem";
             this.malzemeKayıtToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
             this.malzemeKayıtToolStripMenuItem.Text = "Malzeme Kayıt ";
-            // 
-            // aBCAnaliziToolStripMenuItem
-            // 
-            this.aBCAnaliziToolStripMenuItem.Name = "aBCAnaliziToolStripMenuItem";
-            this.aBCAnaliziToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
-            this.aBCAnaliziToolStripMenuItem.Text = "ABC Analizi";
-            // 
-            // çıkışToolStripMenuItem
-            // 
-            this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
-            this.çıkışToolStripMenuItem.Text = "çıkış";
             // 
             // label1
             // 
@@ -254,6 +239,7 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "GÜNCELLE";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView1
             // 
@@ -261,6 +247,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.malzemeKoduDataGridViewTextBoxColumn,
             this.malzemeAdiDataGridViewTextBoxColumn,
             this.yillikSatisiDataGridViewTextBoxColumn,
@@ -277,19 +264,28 @@
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // database1DataSet
-            // 
-            this.database1DataSet.DataSetName = "Database1DataSet";
-            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // malzemeBindingSource
             // 
             this.malzemeBindingSource.DataMember = "malzeme";
             this.malzemeBindingSource.DataSource = this.database1DataSet;
             // 
+            // database1DataSet
+            // 
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // malzemeTableAdapter
             // 
             this.malzemeTableAdapter.ClearBeforeFill = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // malzemeKoduDataGridViewTextBoxColumn
             // 
@@ -353,8 +349,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.malzemeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,8 +360,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem malzemeKayıtToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aBCAnaliziToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem çıkışToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -388,6 +382,7 @@
         private Database1DataSet database1DataSet;
         private System.Windows.Forms.BindingSource malzemeBindingSource;
         private Database1DataSetTableAdapters.malzemeTableAdapter malzemeTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn malzemeKoduDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn malzemeAdiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn yillikSatisiDataGridViewTextBoxColumn;

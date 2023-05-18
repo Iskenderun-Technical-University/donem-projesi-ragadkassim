@@ -79,12 +79,12 @@ namespace malzeme1
             {
                 if (dataGridView1.Rows.Count != 0)
                 {
-                    textBox1.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                    textBox6.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                    textBox5.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                    textBox4.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                    textBox3.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-                    textBox2.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    textBox1.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                    textBox6.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                    textBox5.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                    textBox4.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                    textBox3.Text = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                    textBox2.Text = dataGridView1.CurrentRow.Cells[6].Value.ToString();
 
                 }
 
@@ -94,6 +94,33 @@ namespace malzeme1
             {
                 throw;
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+            //GÜNCELLE
+        {
+            if (check(textBox1.Text) == true || check(textBox2.Text) == true || check(textBox3.Text) == true || check(textBox4.Text) == true || check(textBox5.Text) == true || check(textBox6.Text) == true)
+            {
+                MessageBox.Show("please enter the required data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                con.Open();
+                string query = "UPDATE malzeme SET MalzemeKodu=@MalzemeKodu ,MalzemeAdi=@MalzemeAdi , YillikSatisi=@YillikSatisi, BirimFiyat=@BirimFiyat , MinimumStok=@MinimumStok , TedarikSuresi=@TedarikSuresi WHERE id= '" + dataGridView1.CurrentRow.Cells[0].Value + "'";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@MalzemeKodu", textBox1.Text);
+                cmd.Parameters.AddWithValue("@MalzemeAdi", textBox6.Text);
+                cmd.Parameters.AddWithValue("@YillikSatisi", textBox5.Text);
+                cmd.Parameters.AddWithValue("@BirimFiyat", textBox4.Text);
+                cmd.Parameters.AddWithValue("@MinimumStok", textBox3.Text);
+                cmd.Parameters.AddWithValue("@TedarikSuresi", textBox2.Text);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                MessageBox.Show("updated successfully");
+                dataGridView1.DataSource = LoadUserTable();
+                textBox1.Clear(); textBox2.Clear(); textBox3.Clear(); textBox4.Clear(); textBox5.Clear(); textBox6.Clear();
+            }
+
         }
     }
 }
